@@ -3,4 +3,3 @@
 ### 🗓️ Start Date: July 14, 2025  
 ### 💡 Goal: Become an AI Generalist and App Builder in 100 Days
 
-Each
