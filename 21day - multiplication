@@ -1,0 +1,11 @@
+c = int(input("Enter a number for testing your multiplication knowledge:> "))
+
+for i in range(1,11):
+  print()
+  value = int(input(str(i)+" X " +str(c)+ "= "))
+  if value == i*c:
+    print("Correct")
+  else:
+    print("Nope. The correct answer is: " + str(i*c))
+print()
+print("End of test!")
