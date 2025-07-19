@@ -1,0 +1,14 @@
+userYear = int(input("Enter your birth year: "))
+print()
+
+if userYear  >=1925 and userYear<1947:
+    print("You are Traditionalist")
+elif userYear >=1947 and userYear<1965:
+    print("You are Baby Boomer")
+elif userYear >=1965 and userYear<1981:
+    print("You are Generation X")
+elif userYear >=1981 and userYear<1997:
+    print("You are Millenial")
+else: 
+    print("You are Generation Z")
+
