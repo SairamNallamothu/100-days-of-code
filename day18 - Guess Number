@@ -1,0 +1,21 @@
+myGuessNum = 500000
+
+while True:
+  yourGuessNum = int(input("Enter a number between 0 and 10,00,000: "))
+  Difference = myGuessNum - yourGuessNum
+  if yourGuessNum < 0:
+    print("You entered a negative number. Exiting the program.")
+    exit()
+  elif yourGuessNum == myGuessNum:
+    print("You guessed it right!. You are a genius!")
+    exit()
+  elif yourGuessNum <= 499900:
+    print("Too low!")
+    continue  
+  elif yourGuessNum >= 500900:
+    print("Too High!")
+    continue
+  elif (Difference > 499900 and Difference < 500900):
+    print("Getting close!")
+    continue
+        
