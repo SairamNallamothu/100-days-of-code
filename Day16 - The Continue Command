@@ -1,0 +1,14 @@
+attemptCount = 1
+while True:
+  GuessTheSong = input("Guess the missing piece in the song:'Never going to ______ you up'?")
+  if GuessTheSong != "give":
+    print("Nope. Please try again.")  
+    attemptCount+=1
+  else:
+    print("Well done! It only took you", attemptCount, "attempts.")
+    break
+
+print("Thanks for for playing!")
+    
+
+  
