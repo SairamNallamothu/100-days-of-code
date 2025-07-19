@@ -1,0 +1,28 @@
+exit = True
+while(exit):
+ print()
+ animal = input("What animal sound do you want?")
+ if(animal == "cow"):
+    print("A cow goes moo")
+    exit = input("Do you want to exit-yes or no?")
+    exit.lower()
+ elif (animal == "pig"):
+    print("A pig goes oink")
+    exit = input("Do you want to exit-yes or no?")
+    exit.lower()
+ elif (animal == "duck"):
+    print("A duck goes quack")
+    exit = input("Do you want to exit-yes or no?")
+    exit.lower()
+ elif (animal == "cat"):
+    print("A cat goes meow")
+    exit = input("Do you want to exit-yes or no?")
+    exit.lower()
+ else:
+    print("That animal is not in the list")
+    exit = input("Do you want to exit-yes or no?")
+     
+ if(exit == "yes"):
+    exit = False
+    print("Goodbye")
+      
