@@ -1,0 +1,11 @@
+Year = int(input("Enter a year?"))
+
+if(Year % 4 == 0 and (Year % 100 != 0 or Year % 400 == 0)):
+  seconds = 366 * 24 * 60 * 60
+  print(Year, " is a leap year with",seconds," seconds")
+
+else:
+  seconds = 365 * 24 * 60 * 60
+  print(Year, " is not a leap year and it has",seconds," seconds")
+
+
