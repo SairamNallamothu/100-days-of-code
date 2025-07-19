@@ -1,0 +1,4 @@
+loan = 1000
+for value in range(1,11):
+  loan = (loan * 5)/100 + loan
+  print("Total loan amount for",value," years is:",round(loan,2), "dollars")
