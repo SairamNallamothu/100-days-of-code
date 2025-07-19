@@ -1,0 +1,6 @@
+s = int(input("Enter a starting number: "))
+e = int(input("Enter an ending number: "))
+i = int(input("Enter an increment number: "))
+e=e+1
+for p in range (s, e, i):
+  print(p)
