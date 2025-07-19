@@ -1,0 +1,18 @@
+import random
+randomNum = random.randint(0,1000000)
+
+while True:
+  yourGuessNum = int(input("Guess a number between 0 and 10,00,000:"))
+  Difference = randomNum - yourGuessNum
+  if yourGuessNum < 0:
+    print("You entered a negative number. Exiting the program.")
+    exit()
+  elif yourGuessNum == randomNum:
+    print("You guessed it right!. You are a genius!")
+    exit()
+  elif yourGuessNum < randomNum:
+    print("Too low!")
+    continue  
+  elif yourGuessNum > randomNum:
+    print("Too High!")
+    continue
