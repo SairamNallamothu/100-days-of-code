@@ -1,0 +1,44 @@
+from getpass import getpass as input
+
+player1Score = 0
+player2Score = 0
+
+while True:
+  player1 = input("Player 1, make your move: ")
+  player2 = input("Player 2, make your move: ")
+  player1 = player1.upper()
+  player2 = player2.upper()
+  if((player1 == "S" or player1 == "R" or player1 == "P") and (player2 == "S" 
+  or player2 == "R" or player2 == "P")):
+    print()
+  else:
+    print("Invalid input, try again!")
+    continue
+    
+  if(player1 == player2):
+    print("It's a tie!")
+    continue
+  elif((player1 == ("R") and player2 == "S") or (player1 == "P" and 
+   player2 == "R")or(player1 == "S" and player2 == "P")):
+    print("Player 1 wins!")
+    player1Score += 1
+  if(player1Score == 3 or player2Score == 3):
+      break
+    
+  if((player2 == "R" and player1 == "S") or (player2 == "P" and
+  player1 == "R") or (player2 == "S" and player1 =="P")):
+   print("Player 2 wins!")
+   player2Score += 1
+  if(player1Score == 3 or player2Score == 3):
+       break
+  else:
+       continue
+
+print("")
+print("Game over!")
+print("################################")
+print("Player 1 score: ", player1Score)
+print("Player 2 score: ", player2Score)
+
+
+
