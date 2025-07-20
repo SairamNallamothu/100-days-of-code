@@ -1,0 +1,14 @@
+def usrlogin(username, password):
+  if username == "sairam" and password =="sairam":
+    print("login success")
+  else:
+    print("whoops! I dont recognize you")
+    print()
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    usrlogin(username,password)
+
+print("Replit Login System")
+username = input("Enter username: ")
+password = input("Enter password: ")
+usrlogin(username,password)
