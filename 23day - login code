@@ -1,0 +1,15 @@
+print("Replit Login System")
+
+def login():
+  print("Welcome to the Replit")
+  
+while True:
+  username = input("Enter username: ")
+  password = input("Enter password: ")    
+  if username == "sairam" and password =="sairam":
+    print("login success")
+    login()
+    break
+  else:
+    print("whoops! I dont recognize you")
+    continue
