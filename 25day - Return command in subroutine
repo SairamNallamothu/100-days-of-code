@@ -1,0 +1,26 @@
+import random
+
+print("⚔️ Character Stats Generator ⚔️")
+print()
+def rollDice(value):
+  return random.randint(1,value)
+
+def rollDice2():
+  a = random.randint(1,6) * random.randint(1,8)
+  return a
+  
+while True:
+  warrior = input("Name your warrior: ")
+  healthValue = rollDice2()
+  print("\033[1;32m",warrior, "\033[1;30mhealth is:",healthValue,"\033[1;31mhp")
+  print()
+
+  another = input("Do you want to name another warrior - y/n?")
+  if another == "n":
+    print("Goodbye")
+    break
+  else:
+      warrior = input("Name another warrior:")
+      healthValue = rollDice2()
+      print("\033[1;32m",warrior, "\033[1;34mhealth is:",healthValue,"\033[1;30mhp")
+      print()
