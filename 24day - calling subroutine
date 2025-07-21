@@ -1,0 +1,18 @@
+import random
+
+def rollDice(sides):
+  sideSelected = random.randint(1, sides)
+  print(sideSelected)
+
+while True:
+  sideSelection = int(input("How many sides does your dice have? "))
+  rollDice(sideSelection)
+  print()
+  rollAgain = input("Do you want to roll again? (y/n) ")
+  if rollAgain == "n":
+    print("Thank you for playing!")
+    break
+  else:
+     continue
+    
+
