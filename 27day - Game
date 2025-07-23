@@ -1,0 +1,31 @@
+import random
+
+def character():
+  firstname = input("Enter the character first name: ")
+  characterType = input("Enter the character type(human,   imp, wizard, elf, etc.): ")
+  return firstname
+
+def characterHealth():
+  health = ((random.randint(1, 6) * random.randint(1, 12)) / 2 )+ 10
+  return health
+
+def characterStrength():
+  strength = ((random.randint(1, 6) * random.randint(1, 12)) / 2 )+ 12
+  return strength
+
+while True:
+  firstname = character()
+  health = characterHealth()
+  strength = characterStrength()
+  print(firstname,"\n","HEALTH:",health, "\n","STRENGTH:", strength)
+  print()
+  print("May your name go down in Legend...")
+  print()
+
+
+
+
+
+
+
+  
