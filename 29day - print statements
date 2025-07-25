@@ -1,0 +1,41 @@
+def color(text, color):
+    if(color == "red"):
+        return "\033[0;31m" + text + "\033[0m"
+    elif(color == "green"):
+        return "\033[92m" + text + "\033[0m"
+    elif(color == "yellow"):
+        return "\033[93m" + text + "\033[0m"
+    elif(color == "blue"):
+        return "\033[94m" + text + "\033[0m"
+    elif(color == "purple"):
+        return "\033[95m" + text + "\033[0m"
+    elif(color == "cyan"):
+        return "\033[96m" + text + "\033[0m"
+    elif(color == "white"):
+        return "\033[97m" + text + "\033[0m"
+    elif(color == "black"):
+        return "\033[98m" + text + "\033[0m"
+    else:
+        return text
+
+print(color("Super Subroutine","yellow"))
+print()
+print(
+  color("With my", "yellow") +
+  color(" new program", "purple") +
+  color(" I can just call red('and')", "yellow") +
+  color(" and", "red") +
+  color(" that word will appear in the color I set it to.", "yellow") +
+  color("\n\nWith no", "yellow") +
+  color(" weird gaps.", "cyan"),
+  end=""
+)
+
+print()
+print(color("\nEpic.","yellow"))
+
+
+
+      
+      
+
