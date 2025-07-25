@@ -1,0 +1,99 @@
+import random
+import os, time
+
+def character():
+  firstname = input("Name your legend: ")
+  characterType = input("Character type(human,imp, wizard, elf, etc.): ")
+  return firstname
+
+def characterHealth():
+  health = ((random.randint(1, 6) * random.randint(1, 12)) / 2 )+ 10
+  return health
+
+def characterStrength():
+  strength = ((random.randint(1, 6) * random.randint(1, 12)) / 2 )+ 12
+  return strength
+
+while True:
+  round = 1 
+  character1 = character()
+  character1Health = characterHealth()
+  character1Strength = characterStrength()
+  print()
+  print(character1,"\n","HEALTH:",character1Health, "\n","STRENGTH:", character1Strength)
+  print()
+  print("Who are they battling?")
+  print()
+  character2 = character()
+  character2Health = characterHealth()
+  character2Strength = characterStrength()
+  print(character2,"\n","HEALTH:",character2Health, "\n","STRENGTH:", character2Strength)
+
+  os.system('clear')
+  print("⚔️ BATTLE TIME ⚔️")
+  print("The battle begins!")
+  print()
+
+  
+  while character1Health > 0 and character2Health > 0:
+    ch1 = random.randint(1, 6)
+    ch2 = random.randint(1, 6)
+    
+    if ch1 > ch2:
+     diff = abs(character1Strength -   character2Strength)+1
+     character2Health = (character2Health - diff)
+     print(character1, "wins the round number:",round)
+     print(character2, "takes a hit, with",diff,"damage")
+     print()
+     print(character1,"\nHEALTH:",character1Health)
+     print()
+     print(character2,"\nHEALTH:",character2Health)
+    else:
+     diff = abs(character1Strength - character2Strength)+1
+     character1Health = (character1Health - diff)
+     print(character2, "wins the round number:",round)
+     print(character1, "takes a hit, with",diff,"damage")
+     print()
+     print(character1,"\nHEALTH:",character1Health)
+     print()
+     print(character2,"\nHEALTH:",character2Health)
+     print()
+    round += 1
+
+
+    if character1Health <= 0:
+      print(character1, "has died.")
+      print()
+      print(character2, "destroyed", character1, "in", round,"rounds.")
+      print()
+    
+    elif character2Health <= 0:
+      print(character2, "has died.")
+      print()
+      print(character1, "destroyed", character2, "in", round,"rounds.")
+      print()
+    else:
+      print("And they're both standing for the next round!")
+      time.sleep(10)
+      os.system('clear')
+      print("⚔️ BATTLE TIME ⚔️")
+      print()
+      print("The battle continues!")
+      print()
+      
+   
+      
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
