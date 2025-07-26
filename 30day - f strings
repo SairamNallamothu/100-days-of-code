@@ -1,0 +1,10 @@
+print(f"{'30 days of python programming':^80}")
+print()
+day =1
+
+while day<=30:
+   experience = input(f"Day {day}: \n>")
+   print(f"{'You thought Day {day} was {experience}':^88}".format(day=day,experience=experience))
+   day+=1
+   print()
+  
