@@ -1,0 +1,11 @@
+import random
+
+Greetings = ["Hello", "Hi", "Hey", "Howdy", "Hola", "Bonjour", "Greetings", "What's up", "How are you", "How's it going", "How's your day", "How's everything", "How are things", "How's life", "How's your life", "How's your day going", "How's your day been", "How's your day been going", "How's your day been going so far", "How's your day been going so far today", "How's your day been going so far today?"]
+
+a = random.randint(0, len(Greetings) - 1)
+print(f"{Greetings[a]}")
+
+
+
+
+
