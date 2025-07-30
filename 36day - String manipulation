@@ -1,0 +1,28 @@
+nameList = []
+while True:
+  firstname = input("Enter your first name: ")
+  surname = input("Enter your surname: ")
+  if firstname == "" or surname == "":
+    print("You must enter both a first name and a surname")
+    print("Please try again")
+    continue
+  else:
+    fullname = firstname.strip().capitalize() + " " + surname.strip().capitalize()  
+    if(fullname not in nameList):
+      print("Name added to list")
+      nameList.append(fullname)
+      print(nameList)
+      print()
+    else:
+      print("Name already in list")
+      print(nameList)
+      print()
+    print("Do you want to add another name?")
+    answer = input("Enter 'y' for yes or 'n' for no: ")
+    if(answer == 'n'):
+      print("Goodbye")
+      print(nameList)
+      break
+    else:
+      continue
+    
