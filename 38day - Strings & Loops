@@ -1,0 +1,27 @@
+def color(text, color_code):
+  return color_code + text
+
+# ANSI color codes
+colors = {
+  "r": "\033[31m",  # red
+  "y": "\033[33m",  # yellow
+  "g": "\033[32m",  # green
+  "b": "\033[34m",  # blue
+  "p": "\033[35m"   # magenta (pink)
+}
+
+string = input("\033[33mWhat sentence do you want rainbow-ising?\n\033[32m")
+
+color_mode = None
+
+for letter in string:
+  if letter in colors:
+      color_mode = colors[letter]
+      print(color(letter, color_mode), end="")
+  elif letter == " ":
+      color_mode = None
+      print("\033[0m" + letter, end="")  # Reset color and print space
+  elif color_mode:
+      print(color(letter, color_mode), end="")
+  else:
+      print(letter, end="")
