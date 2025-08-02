@@ -1,0 +1,40 @@
+import random
+from collections import Counter
+
+listOfWords = ["british", "suave", "integrity", "accent", "evil", "genius", "Downton"]
+
+wordChosen = random.choice(listOfWords)
+lenghtOfWord = len(wordChosen)
+
+attempts = 5
+choosenLetters = []
+print("🌟Hangman🌟")
+
+while True:
+  if attempts == 0:
+      print()
+      print("You lose!")
+      break
+  if all(letter in choosenLetters for letter in set(wordChosen)):
+      print()
+      print()
+      print("You win with", attempts, "attempts left!")
+      break
+  print()
+  letter = input("Choose a letter:")
+  if letter in wordChosen:
+      print("Correct!")
+      print()
+      choosenLetters.append(letter)
+      position = wordChosen.index(letter)
+      for i in range(lenghtOfWord):
+          if  wordChosen[i] in choosenLetters:
+              print(wordChosen[i], end=" ")
+          else:
+              print("_", end=" ")
+              
+  else:
+      print("Nope, not in there!")
+      attempts -= 1
+      print(f"{attempts} attempts left")
+  
