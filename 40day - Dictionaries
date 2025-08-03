@@ -1,0 +1,19 @@
+print("🌟Contact Card🌟")
+print()
+
+contactDetails = {}
+name = input("Enter your name> ")
+contactDetails["name"] = name
+DOB = input("Enter your date of birth> ")
+contactDetails["DOB"] = DOB
+phone = input("Enter your phone number> ")
+contactDetails["phone"] = phone
+email = input("Enter your email> ")
+contactDetails["email"] = email
+address = input("Enter your address> ")
+contactDetails["address"] = address
+print()
+
+print(f"Hi {contactDetails['name']}. Our dictionary says that you were born on {contactDetails['DOB']}, we can call you on {contactDetails['phone']}, email {contactDetails['email']}, or write to The {contactDetails['address']}")
+
+
