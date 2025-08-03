@@ -1,0 +1,9 @@
+print("🌟Website Rating🌟")
+print()
+websiteInfo = {"name": " ", "url": " ", "description": " ", "rating": " "}
+
+for name in websiteInfo.items():
+  websiteInfo[name[0]] = input("Enter the "+ str(name[0]) + ": ")
+
+print()
+print("Website Name: " + websiteInfo["name"], "URL: " + websiteInfo["url"], "Description:" + websiteInfo["description"], "Rating: " + websiteInfo["rating"], sep= "\n")
