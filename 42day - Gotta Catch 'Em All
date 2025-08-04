@@ -1,0 +1,28 @@
+def color(text):
+
+  if(text == "fire"):
+    return "\033[31m" + text + "\033[0m"
+  elif(color == "earth"):
+    return "\033[32m" + text + "\033[0m"
+  elif(color == "air"):
+    return "\033[37m" + text + "\033[0m"
+  elif(color == "water"):
+    return "\033[34m" + text + "\033[0m"
+  
+print("""👾 MokéBeast - The Non-Copyright 
+Generic Beast Battle Game 👾""")
+print()
+MokeBeast = {"name": "", "type": "", "special move": "", "starting HP": 0, "starting MP":0}
+
+for name in MokeBeast.items():
+    MokeBeast[name[0]] = input(f"Input your beast's {name[0]}: ")
+    print()
+
+print()
+print("Your beast is called " + MokeBeast["name"] + ", It is a " + color(MokeBeast["type"]) + " type beast with a special move of " + MokeBeast["special move"])
+
+
+
+    
+
+
