@@ -1,0 +1,11 @@
+import random
+
+print("Sairam's Bingo Card Generator")
+print()
+randomNum = sorted(random.sample(range(1, 90), 8))
+
+list = [randomNum[0:3],[randomNum[3],"BINGO",randomNum[4]],randomNum[5:8]]
+  
+for i in list:
+  print(" | ".join(str(cell) for cell in i))
+  print("-----------------")
