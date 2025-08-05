@@ -1,0 +1,50 @@
+import random
+
+print("Sairam's Bingo Card Generator")
+print()
+
+randomNum = sorted(random.sample(range(1, 90), 8))
+
+list = [randomNum[0:3],[randomNum[3],"BINGO",randomNum[4]],randomNum[5:8]]
+
+def mark_card(userInput):
+  for i in range(3):
+    for j in range(3):
+      if i == 1 and j == 1:
+        continue # skip the middle
+      if list[i][j] == int(userInput):
+        list[i][j] = "X"
+        
+def is_bingo_card_complete():
+  for i in range(3):
+      for j in range(3):
+          if i == 1 and j == 1:
+              continue  # skip the middle
+          if list[i][j] != "X":
+              return False
+  return True
+  
+while True:
+  result = is_bingo_card_complete()
+  if result:
+    print("Congratulations! You have completed the bingo card!")
+    break
+  else:
+    userInput = input("Enter your next number(0 - 90) or 'q' to quit>")
+    if userInput == "q":
+      print("Thank you for playing!")
+      break
+    elif int(userInput) in randomNum:
+      print("You got a match!")
+      mark_card(userInput)
+      for i in list:
+        print(" | ".join(str(cell) for cell in i))
+        print("-----------------")
+    else:
+      print("No match found.")
+      for i in list:
+        print(" | ".join(str(cell) for cell in i))
+        print("-----------------")
+        print()
+      continue
+  
