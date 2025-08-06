@@ -1,0 +1,92 @@
+print("🌟Life Organizer🌟")
+print()
+
+questions = ["What is the task? >", "When is it due by? >", "What is the priority? >"]
+todos = []
+temp = []
+
+def pettyPrint():
+  length = len(todos)
+  for i in range(length):
+    print(i+1,":",todos[i])
+    print()
+    print("--------------------------------------------------")
+    print()
+
+def viewPriority(viewPrio):
+  length = len(todos)
+  for i in range(length):
+    if todos[i][2] == viewPrio:
+      print(todos[i])
+      print()
+      print("--------------------------------------------------")
+
+def editTodo(editInput):
+  print(todos[editInput-1])
+  print()
+  Edit = input("What do you want to edit: Task, Due by or priority?").lower().strip()
+  if Edit == "task":
+    print()
+    userInput = input("Enter the new task >")
+    todos[editInput-1][0] = userInput
+  elif Edit == "due by":
+    print()
+    userInput = input("Enter the new due date >")
+    todos[editInput-1][1] = userInput
+  elif Edit == "priority":
+    print()
+    userInput = input("Enter the new priority >")
+    todos[editInput-1][2] = userInput
+  else:
+    print("Please enter a valid command.")
+    
+  
+while True:
+  print()
+  userInput = input("Welcome to Life Organizer. Do you want to add, view, edit or remove a todo? >")
+  
+  if userInput.lower().strip() == "add" or userInput.lower().strip() == "edit" or userInput.lower().strip() == "remove" or userInput.lower().strip() == "view":
+
+    if userInput.lower().strip() == "add":
+      for question in questions:
+        print()
+        userInput = input(question)
+        temp.append(userInput)
+      todos.append(temp)
+      temp = []
+    elif userInput.lower().strip() == "view":
+      print()
+      viewType = input("Do you want to view all or view specifc priority? >")
+      if viewType.lower().strip() == "all":
+        pettyPrint()
+      else:
+        print()
+        viewPrio = input("Enter the priority of todo's you want to see >")
+        viewPriority(viewPrio)
+      continue
+    elif userInput.lower().strip() == "edit":
+      print()
+      pettyPrint()
+      editInput = int(input("Enter the task number you want to edit >"))
+      editTodo(editInput)
+      print()
+      print("Your updated todo is: ")
+      print(todos[editInput-1])
+      print()
+      print("--------------------------------------------------")
+      print()
+      continue
+    elif userInput.lower().strip() == "remove":
+      pettyPrint()
+      removeInput = int(input("Enter the task number you want to remove >"))
+      todos.pop(removeInput-1)
+      print()
+      print("Your updated todo list is: ")
+      pettyPrint()
+      print()
+      print("--------------------------------------------------")
+      continue
+  else:
+    print("Please enter a valid command.")
+    continue
+    
