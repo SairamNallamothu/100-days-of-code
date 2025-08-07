@@ -1,0 +1,51 @@
+def color(text):
+
+  if(text == "fire"):
+    return "\033[31m" + text + "\033[0m"
+  elif(text == "earth"):
+    return "\033[32m" + text + "\033[0m"
+  elif(text == "air"):
+    return "\033[37m" + text + "\033[0m"
+  elif(text == "water"):
+    return "\033[34m" + text + "\033[0m"
+
+MokeBeast = {}
+
+def prettyPrint():
+  for key, value in MokeBeast.items():
+    print(key, end=" | ")
+    for subkey, subvalue in value.items():
+      print(subkey,":", subvalue, end=" | ")
+      print()
+
+print("""👾 MokéBeast Generator 👾""")
+print()
+
+while True:
+  beastName = input("Input the beast name: >")
+  print()
+  beastElement = input("Input the beast element: >")
+  print()
+  beastMove = input("Input the beast special move: >")
+  print()
+  beastHP = input("Input the beast HP: >")
+  print()
+  beastMP = input("Input the beast MP: >")
+  print()
+  MokeBeast[beastName] = {"element": beastElement, "special move": beastMove, "HP": beastHP, "MP": beastMP}
+  print()
+  userInput = input("Again? (y/n): >")
+  print()
+  if(userInput == "n"):
+    prettyPrint()
+    break
+  elif(userInput == "y"):
+    print()
+    continue
+    
+
+
+
+
+
+
