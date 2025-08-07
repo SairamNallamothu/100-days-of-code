@@ -1,0 +1,67 @@
+print("🌟Top Trumps🌟")
+print()
+print("""Welcome to the Top Trumps 'Most Cool Person' Game!""")
+print()
+
+persons = {"Sairam": {"Intelligence": 80, "Coolness": 30, "Charmness": 60, "Hair Styling": 90}, "Bhaavya": {"Intelligence": 85, "Coolness": 50, "Charmness": 80, "Hair Styling": 60}}
+
+def compare_stats(person1, person2, stat):
+    print()
+    print(f"{person1} has {stat} stat of {persons[person1][stat]} !")
+    print(f"{person2} has {stat} stat of {persons[person2][stat]} !")
+    if persons[person1][stat] > persons[person2][stat]:
+        print()
+        print(f"****** {person1} wins! ******")
+    else:
+        print()
+        print(f"****** {person2} wins! ******")
+        
+while True:
+  person = input("""Please choose your person:
+    1. Sairam
+    2. Bhaavya \n \n >""")
+  if person == "1":
+    person1 = "Sairam"
+    person2 = "Bhaavya"
+  elif person == "2":
+    person1 = "Bhaavya"
+    person2 = "Sairam"
+  else:
+    print("Invalid input. Please try again.")
+    print()
+    continue
+  print()
+  compare = input("""Enter the stat you want to compare:
+               1. Intelligence
+               2. Coolness
+               3. Charmness
+               4. Hair Styling\n \n >""")
+  if compare == "1":
+      compare = "Intelligence"
+      compare_stats(person1, person2, compare)
+  elif compare == "2":
+      compare = "Coolness"
+      compare_stats(person1, person2, compare)
+  elif compare == "3":
+      compare = "Charmness"
+      compare_stats(person1, person2, compare)
+  elif compare == "4":
+      compare = "Hair Styling"
+      compare_stats(person1, person2, compare)
+  else:
+      print("Invalid input. Please try again.")
+      print()
+      continue
+  print()
+  again = input("Again? (y/n) >")
+  if again == "n":
+    print("Goodbye!")
+    break
+  else:
+    print()
+    continue
+    
+
+  
+        
+        
