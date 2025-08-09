@@ -1,0 +1,20 @@
+print("🌟HIGH SCORE TABLE🌟")
+
+while True:
+    print()
+    name = input("Enter your initials > ")
+    print()
+    score = input("Enter your score > ")
+    f = open("high.scores", "a")
+    f.write(f"{name} {score}\n")
+    f.close()
+    print("Added to high score table.!")
+    print()
+    again = input("Add another? (y/n) > ")
+    if again == "n":
+        print("Thanks for playing!")
+        break
+    else:
+        continue
+      
+  
