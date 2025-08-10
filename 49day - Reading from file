@@ -1,0 +1,25 @@
+f = open("high.score", "r")
+
+greaterValue = 0
+greaterLabel = ""
+
+while True:
+  line = f.readline()
+  if not line:
+    break
+  
+  label, value = line.strip().split()
+  value = int(value)
+   
+  if value > greaterValue:
+    greaterValue = value
+    greaterLabel = label
+
+f.close()
+print(greaterLabel,greaterValue)
+    
+  
+    
+    
+      
+    
