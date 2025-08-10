@@ -1,0 +1,23 @@
+import random,os, time
+
+while True:
+  selection = input("Choose one of the following options:\n1. Add an idea\n2. Generate a random idea \n3. Exit\n:>")
+  
+  if selection == "1":
+      new_idea = input("Enter your idea: ")
+      f = open("my.ideas", "a")
+      f.write(new_idea + "\n")
+      f.close()
+      print("Idea added successfully!")
+      time.sleep(3)
+      os.system('clear')
+  elif selection == "2":
+      f = open("my.ideas", "r")
+      ideas = random.choice(f.readlines())
+      print("Your random idea is: " + ideas)
+      f.close()
+      time.sleep(3)
+      os.system('clear')
+  elif selection == "3":
+      print("Goodbye!")
+      break
