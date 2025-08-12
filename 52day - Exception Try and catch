@@ -1,0 +1,44 @@
+print("🌟Dave's Dodgy Pizzas🌟")
+print()
+
+orders = []
+temp = []
+while True:
+    f = open("orders.txt", "r")
+    for line in f:
+     orders.append(line)
+    f.close()
+    exit = input("Do you want to order or no - y/n? ")
+    if exit == "n":
+        print()
+        print("Goodbye!")
+        break
+    elif exit == "y":
+        pass
+        
+    try:
+        print()
+        count = int(input("How many pizzas do you want? "))
+        print()
+        size = int(input("What size do you want? "))
+        print()
+        name = input("What is your name? ")
+        print()
+        cost = size * count
+        
+        temp.append(name)
+        temp.append(cost)
+        f = open("orders.txt", "a")
+        f.write(str(temp) + "\n")
+        f.close()
+        temp = []
+        print("Thanks", name, "your pizzas will cost", cost,"euros")
+        print()
+    except ValueError:
+        print("You must input a numerical character, try again.")
+        continue
+        
+    
+    
+    
+    
