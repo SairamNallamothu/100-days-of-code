@@ -1,0 +1,60 @@
+print("🌟RPG Inventory🌟")
+print()
+
+inventory = []
+
+while True:
+
+  inventory = []
+  f = open("inventory.txt", "r")
+  for line in f:
+    line = line.strip()
+    inventory.append(line)
+  f.close()
+  print()
+  selection = input("1: Add  2: Remove  3: View 4: Exit >")
+
+  try:
+    if selection == "1":
+      print()
+      addInput = input("Input the item to add >").upper()
+      print()
+      inventory.append(addInput)
+      f = open("inventory.txt", "a")
+      f.write(addInput + "\n")
+      print()
+      print(addInput," has been added to your inventory.")
+  
+    elif selection == "2":
+        print()
+        removeInput = input("Input the item to remove >").upper()
+        print()
+        if removeInput in inventory:
+          print(removeInput," has been removed from your inventory.")
+          print()
+        else:
+          print(removeInput," is not in your inventory.")
+          continue
+        inventory = [item for item in inventory if item != removeInput]
+        f = open("inventory.txt", "w")
+        for i in inventory:
+          f.write(i + "\n")
+        print()
+    elif selection == "3":
+        print()
+        count = 0
+        viewItem = input("Input the item to view >").upper()
+        for i in inventory:
+          if i == viewItem:
+            count += 1
+        print()
+        print("You have ", count," ", viewItem, "in your inventory.")
+  
+    elif selection == "4":
+        print()
+        print("Goodbye!")
+        break
+
+  except ValueError:
+      print("Invalid input. Please enter a number between 1 and 4.")
+      print()
