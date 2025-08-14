@@ -1,0 +1,12 @@
+import csv # Imports the csv library
+
+print("🌟Shop $$ Tracker🌟")
+print()
+with open('Day54Totals.csv', 'r') as file: # Opens the csv file
+    total = 0 # Sets the total to 0
+    reader = csv.DictReader(file)
+    for row in reader:
+      Value = float(row['Cost']) * float(row['Quantity']) # Multiplies the cost by the quantity
+      total += Value
+    total = round(total, 2)
+    print(f"Your shop took ${total} today")
