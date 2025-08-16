@@ -1,0 +1,17 @@
+import csv,os
+
+with open("100MostStreamedSongs.csv", newline="") as f:
+  reader = csv.DictReader(f)
+
+  try:
+    for row in reader:
+      if not os.path.exists(row["Artist(s)"]):
+        os.mkdir(row["Artist(s)"])
+        open(f"{row['Artist(s)']}/{row['Song']}.txt", "w") 
+        
+      else:
+        open(f"{row['Artist(s)']}/{row['Song']}.txt", "w")
+  except FileNotFoundError:
+      print(FileNotFoundError)
+      
+  
