@@ -1,0 +1,34 @@
+import datetime
+
+today = datetime.date.today()
+
+print("🌟Event Countdown Timer🌟")
+print()
+userName = input("Input the event > ")
+print()
+Year = input("Input the year >")
+print()
+Month = input("Input the month >")
+print()
+Day = input("Input the day >")
+print()
+
+userEventDate = datetime.date(int(Year), int(Month), int(Day))
+
+if today > userEventDate:
+    print("The event has already passed.😔 😢 😞 😟 😥 😓 😩 😿 💔 🥀")
+    print()
+    daysPassed = today - userEventDate
+    print(f"It has been {daysPassed.days} days since {userName}.")
+    
+elif today < userEventDate:
+    print("The event is coming soon.😊 😃 😄 😁 😆 😅 😂 🤣 😀 😊")
+    print()
+    daysLeft = userEventDate - today
+    print(f"There are {daysLeft.days} days left until {userName}.")
+    print()
+else:
+    print("The event is today.🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉")
+    print()
+  
+
