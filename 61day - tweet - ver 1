@@ -1,0 +1,53 @@
+from replit import db
+import datetime
+
+def clear():
+  keys = db.keys()
+  for key in keys:
+    del db[key]
+  #print("Database cleared!")
+  print()
+#clear()
+print()
+print("Welcome to Twitter!")
+
+while True:
+  print()
+  userSelection = input("What would you like to do? (add or view tweets or exit): ")
+  print()
+  if userSelection == "add":
+    tweet = input("What would you like to tweet? ")
+    print()
+    tweet_time = datetime.datetime.now()
+    tweet_time = tweet_time.strftime("%Y-%m-%d %H:%M:%S")
+    db[tweet_time] = tweet
+    print("Tweet added!")
+    print()
+  elif userSelection == "view":
+    print("Tweets: ")
+    print()
+    keys = db.keys()
+    count = 0
+    length = len(keys)
+    while True:
+      for key in keys:
+       print(f"{key}: {db[key]}")
+       count += 1
+       if count == 10:
+        print()
+        userSelection = input("Would you like to view more tweets? (yes or no): ")
+        if userSelection == "yes":
+          count = 0
+          continue
+        else:
+          break
+        
+  elif userSelection.lower() == "exit":
+    print()
+    print("Goodbye!")
+    break
+  else:
+    print("Invalid selection. Please try again.")
+    print()
+    continue
+    
