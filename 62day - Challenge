@@ -1,0 +1,71 @@
+from replit import db
+import datetime, getpass, os
+
+def clear():
+  keys = db.keys()
+  for key in keys:
+    del db[key]
+  #print("Database cleared!")
+  print()
+#clear()
+print()
+password = int("9848149119")
+
+while True:
+  print("Welcome to Diary!")
+  print()
+  userPassword = int(getpass.getpass("Enter your password: "))
+  print()
+
+  if userPassword == password:
+    os.system('clear')
+    print()
+    print("Welcome to Diary!")
+    print()
+    while True:
+      userSelection = input("What would you like to do in diary? (add, view or exit): ")
+      print()
+      if userSelection.lower() == "add":
+        os.system('clear')
+        dairyNote = input("What would you like to add to your diary? ")
+        print()
+        dairy_time = datetime.datetime.now()
+        dairy_time = dairy_time.strftime("%Y-%m-%d %H:%M:%S")
+        db[dairy_time] = dairyNote
+        print("Added to your diary!")
+        print()
+      elif userSelection.lower() == "view":
+        os.system('clear')
+        print("Your diary Entries: ")
+        print()
+        keys = list(db.keys())  # Convert KeysView to a list
+        count = len(keys)
+        while True:
+           if count == 0:
+             print("No more entries. Returning to main menu.")
+             print()
+             break
+           count -= 1
+           print(keys[count], db[keys[count]])
+           print()
+           nextEntry = input("Would you like to view the next entry? (yes or no): ")
+           print()
+           if nextEntry == "yes":
+              os.system('clear')
+              continue
+           else:
+              break
+    
+      elif userSelection.lower() == "exit":
+        print()
+        print("Goodbye!")
+        exit()
+      else:
+        print("Invalid selection. Please try again.")
+        print()
+        continue
+  else:
+    print("Incorrect password. Please try again.")
+    print()
+    continue  # Restart the loop to prompt for the password again
+  
