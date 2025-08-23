@@ -1,0 +1,58 @@
+class job:
+  name = None
+  salary = None
+  worked_hours = None
+  
+  def __init__(self, name, salary, worked_hours):
+    self.name = name
+    self.salary = salary
+    self.worked_hours = worked_hours
+
+  def job_data(self):
+    print(f"Job Type: {self.name}\nSalary:$ {self.salary}\nHours Worked:{self.worked_hours}")
+
+class docter(job):
+  speciality = None
+  years_of_experience = None
+  
+  def __init__(self, speciality, years_of_experience):
+    self.name = "Docter"
+    self.salary = "Doing very nicely thank you"
+    self.worked_hours = "50"
+    self.speciality = speciality
+    self.years_of_experience = years_of_experience
+
+  def docter_data(self):
+    print(f"Speciality: {self.speciality}\nYears of Experience {self.years_of_experience}")
+
+class teacher(job):
+  subject = None
+  position = None
+  def __init__(self, subject, position):
+    self.name = "Teacher"
+    self.salary = "Nowhere near enough"
+    self.subject = subject
+    self.position = position
+
+  def teacher_data(self):
+    print(f"Subject: {self.subject}\nPosition: {self.position}")
+
+
+lawyer = job("Lawyer", 10000, 40)
+lawyer.job_data()
+print()
+
+Teacher = job("Teacher", "Nowhere near enough", "All of them")
+Teacher.job_data()
+Teacher = teacher("Computer Science", "Professor")
+Teacher.teacher_data()
+print()
+
+Docter = job("Docter", "Doing very nicely thank you", 50)
+Docter.job_data()
+Docter = docter("Heart", 10)
+Docter.docter_data()
+print()
+
+
+      
