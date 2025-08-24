@@ -29,18 +29,24 @@ while True:
     keys = db.keys()
     count = 0
     length = len(keys)
-    while True:
-      for key in keys:
-       print(f"{key}: {db[key]}")
-       count += 1
-       if count == 10:
+    print(f"Total tweets: {length}")
+    print()
+    for key in keys:
+      print(f"{key}: {db[key]}")
+      count += 1
+      if count == 10:
+       print()
+       userSelection = input("Would you like to view 10 more tweets? (yes or no): ")
+       if userSelection == "yes":
+        count = 0
         print()
-        userSelection = input("Would you like to view more tweets? (yes or no): ")
-        if userSelection == "yes":
-          count = 0
-          continue
-        else:
-          break
+        continue
+       else:
+         print("Returning to main menu.")
+         print()
+         break
+    print()
+    print("No more Tweets to view. Returning to main menu.")
         
   elif userSelection.lower() == "exit":
     print()
