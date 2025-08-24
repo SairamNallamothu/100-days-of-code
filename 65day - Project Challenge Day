@@ -1,0 +1,80 @@
+print("🌟Generic RPG🌟")
+print()
+
+class character:
+  name = None
+  health = None
+  magic_points = None
+  
+  def __init__(self, name, health, magic_points):
+    self.name = name
+    self.health = health
+    self.magic_points = magic_points
+
+class player(character):
+  number_of_lives = None
+  
+  def __init__(self, name, health, magic_points, number_of_lives):
+    super().__init__(name, health, magic_points)
+    self.number_of_lives = number_of_lives
+    
+  def __str__(self):
+    print("Player")
+    return f"Name: {self.name}\nHealth: {self.health}\nMagic Points: {self.magic_points}\nNumber of Lives: {self.number_of_lives}\nAlive?: {self.am_i_alive()}"
+
+  def am_i_alive(self):
+    if self.number_of_lives:
+      return "Yes"
+    else:
+      return "No"
+
+class enemy(character):
+  type_of_enemy = None
+  strength = None
+  def __init__(self, name, health, magic_points, type_of_enemy, strength):
+    super().__init__(name, health, magic_points)
+    self.type_of_enemy = type_of_enemy
+    self.strength = strength
+    print()
+
+class orc(enemy):
+  speed = None
+  def __init__(self, name, health, magic_points,  type_of_enemy, strength, speed):
+    super().__init__(name, health, magic_points, type_of_enemy, strength)
+    self.speed = speed
+   
+  def __str__(self):
+    return f"Name: {self.name}\nHealth: {self.health}\nMagic Points: {self.magic_points}\nType: {self.type_of_enemy}\nStrength: {self.strength}\nSpeed: {self.speed}"
+
+class vampire(enemy):
+  dayornight = None
+  
+  def __init__(self, name, health, magic_points,  type_of_enemy, strength, dayornight):
+    super().__init__(name, health, magic_points, type_of_enemy, strength)
+    self.dayornight = dayornight
+
+  def __str__(self):
+    return f"Name: {self.name}\nHealth: {self.health}\nMagic Points: {self.magic_points}\nType: {self.type_of_enemy}\nStrength: {self.strength}\nDay/Night: {self.dayornight}"
+    
+
+firstChracter = player("David", 100, 50, 3)
+print(firstChracter)
+
+firstVampire = vampire("Boris", 45, 70, "Vampire", 3, "Night")
+print(firstVampire)
+
+secondVampire = vampire("Rishi", 70, 10, "Vampire", 75, "Day")
+print(secondVampire)
+
+firstOrc = orc("Bill", 60, 5, "Orc", 75, 90)
+print(firstOrc)
+
+secondOrc = orc("Ted", 75, 40, "Orc", 80, 45)
+print(secondOrc)
+
+thirdOrc = orc("Station", 35, 40, "Orc", 49, 50)
+print(thirdOrc)
+
+
+
+  
