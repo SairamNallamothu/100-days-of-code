@@ -1,0 +1,18 @@
+import os
+
+print("🌟Login System🌟")
+print()
+
+userName = input("Enter your username: ")
+password = input("Enter your password: ")
+passwordAdmin = os.environ["ADMIN_PASSWORD"]
+passwordNormie = os.environ["NORMIE_PASSWORD"]
+userAdmin = os.environ["ADMIN_USER"]
+userNormie = os.environ["NORMIE_USER"]
+
+if userName.upper() == userAdmin and password.upper() == passwordAdmin:
+    print("Hello Admin!")
+elif userName.upper() == userNormie and password.upper() == passwordNormie:
+    print("Hello Normie!")
+else:
+    print("Invalid username or password")
