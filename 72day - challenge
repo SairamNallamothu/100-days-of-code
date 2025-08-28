@@ -1,0 +1,116 @@
+from replit import db
+import datetime, getpass, os, time
+import hashlib
+
+def clear():
+  keys = db.keys()
+  for key in keys:
+    del db[key]
+  print("Database cleared!")
+  print()
+#clear()
+###################################################################
+def dairy():
+  while True:
+    userSelection = input("What would you like to do in diary? (add, view or exit): ")
+    print()
+    if userSelection.lower() == "add":
+      os.system('clear')
+      dairyNote = input("What would you like to add to your diary? ")
+      print()
+      dairy_time = datetime.datetime.now()
+      dairy_time = dairy_time.strftime("%Y-%m-%d %H:%M:%S")
+      db[dairy_time] = dairyNote
+      print("Added to your diary!")
+      print()
+    elif userSelection.lower() == "view":
+      os.system('clear')
+      print("Your diary Entries: ")
+      print()
+      keys = list(db.keys())  # Convert KeysView to a list
+      count = len(keys)
+      while True:
+        if count == 0:
+          print("No more entries. Returning to main menu.")
+          print()
+          break
+        count -= 1
+        if keys[count] == username:
+          continue
+        print(keys[count], db[keys[count]])
+
+        print()
+        nextEntry = input("Would you like to view the next entry? (yes or no): ")
+        print()
+        if nextEntry == "yes":
+          time.sleep(1)
+          os.system('clear')
+          continue
+        elif nextEntry == "no":
+          print("Returning to main menu.")
+          time.sleep(1)
+          os.system('clear')
+          break
+        else:
+          print("Invalid selection. Returning to main menu..")
+          time.sleep(3)
+          os.system('clear')
+          break
+
+    elif userSelection.lower() == "exit":
+      print()
+      print("Goodbye!")
+      exit()
+    else:
+      print("Invalid selection. Please try again.")
+      print()
+      continue
+
+###################################################################
+keys = db.keys()
+count = len(keys)
+if count == 0:
+  print("Welcome to Diary!")
+  print()
+  username = input("Enter a username for your diary: ")
+  print()
+  password = input("Enter a password for your diary: ")
+  print()
+  salt = 14221
+  newPassword = f"{password}{salt}" # append the salt
+  newPassword = hashlib.sha256(newPassword.encode()).hexdigest() # hash the lot
+  #print(newPassword)
+
+  db[username] = {"password":newPassword, "salt": salt}
+  print("User added")
+  print()
+  time.sleep(3)
+  os.system("clear")
+  print()
+  print("Welcome to your diary!")
+  print()
+  dairy()
+else:
+  username = input("Username >").lower()
+  print()
+  password  = input("Password >")
+  print()
+  salt = db[username]["salt"] 
+  newPassword = f"{password}{salt}"
+  newPassword = hashlib.sha256(newPassword.encode()).hexdigest()
+  if newPassword == db[username]["password"]: 
+    print("Login successful")
+    print()
+    time.sleep(3)
+    os.system("clear")
+    print()
+    print("Welcome to your diary!")
+    print()
+    dairy()
+  else:
+    print("Login failed")
+    print()
+   
+    
+    
+
