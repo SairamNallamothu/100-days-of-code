@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+  <h1>Sairam's - Portfolio</h1>
+   <ol>
+      <h2><li>Diary Project - Day 72 </li></h2>
+      <p class=blurb>This is a 72day challenge project in 100 days of python course. Project is about diary where user can add entries, view them and its also password protected. Only if you have credentials - you can access the diary</p>
+    <a href="https://replit.com/@sairam2294/Day72100Days#main.py"> <img src="/images/one.png" alt="Diary Project" width="400" height="200"></a>
+     <h2><li>GooeyGUI- Day 66</li></h2>
+        <p class=blurb>This is a 66day challenge project in 100 days of python course. Project is about GUI based calculator where user can add, subtract, multiply and divide numbers.</p>
+        <a href="https://replit.com/@sairam2294/Day66100Days#main.py"><img src="/images/GooeyGUI-66.png" alt="GooeyGUI" width="400" height="200"></a>
+
+     <h2> <li>Hangman - Day 39</li></h2>
+     <p class=blurb>This is a 39day challenge project in 100 days of python course. Project is about Hangman game where user can guess the word and if he guesses wrong, he will loose a life.</p>
+     <a href="https://github.com/SairamNallamothu/100-days-of-code/blob/main/39day%20-%20hangman"><img src="/images/hangman - 39day.png" alt="Hangman" width="400" height="200"></a>
+
+     <h2> <li>Generic RPG - Day 65</li></h2>
+     <p class=blurb>This is a 65day challenge project in 100 days of python course. Project is about Generic RPG game where user can choose his character and fight with the enemy.</p>
+    <a href="https://replit.com/@sairam2294/Day65100Days#main.py"> <img src="/images/two-65.png" alt="Generic RPG" width="400" height="200"></a>
+
+     <h2> <li>Starwars - Day 37</li></h2>
+     <p class=blurb>This is a 37day challenge project in 100 days of python course. Project is about Starwars game where user can choose his character and fight with the enemy.</p>
+     <a href="https://github.com/SairamNallamothu/100-days-of-code/blob/main/37day-%20Star%20Wars%20name"><img src="/images/starwars - 37day.png" alt="Starwars" width="400" height="200"></a>
+   </ol>
+
+  </body>
+
+
+
+##########################################################################################
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #e4e2e2;
+}
+
+h1, h2{
+  font-family: sans-serif;
+  font-size: 24px;
+  color: blue;
+  background-color: #d3d345;
+  text-align:center;
+
+}
+
+h2{
+  font-size: 12px;
+
+}
+
+p{
+  font-family: monospace;
+  font-size: 10px;
+  color: blue;
+   text-align:center;
+
+}
+
+img
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 70%;
+}
+
+.blurb{
+  font-style: italic;
+  font-weight: bold;
+}
+
+</html>
