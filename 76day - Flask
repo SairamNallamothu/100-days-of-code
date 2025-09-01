@@ -1,0 +1,129 @@
+from flask import Flask
+import datetime # import the datetime library
+
+app = Flask(__name__, static_url_path= '/static')
+
+@app.route('/')
+def index(): 
+  page = """<html>
+  <head>
+    <title>Home Page</title>
+    <body>
+      <h1>Welcome to Sairam's Home Page</h1>
+      <p>This is a simple web page created using Flask.</p>
+      <p>Current date and time: """ + str(datetime.datetime.now()) + """</p>
+      <p>Click <a href="/portfolio">here</a> to view my portfolio.</p>
+      <p>Click <a href="/linktree">here</a> to view my linktree.</p>
+    </body>
+</html>
+  """
+  return page
+@app.route('/portfolio')
+def portfolio(): 
+  page = """<html>
+
+  <head>
+    <title>My Portfolio</title>
+    <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      background-color: #e4e2e2;
+    }
+
+    h1, h2{
+      font-family: sans-serif;
+      font-size: 24px;
+      color: blue;
+      background-color: #d3d345;
+      text-align:center;
+
+    }
+
+    h2{
+      font-size: 12px;
+
+    }
+
+    p{
+      font-family: monospace;
+      font-size: 10px;
+      color: blue;
+       text-align:center;
+
+    }
+
+    img
+    {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+      height: 70%;
+    }
+
+    .blurb{
+      font-style: italic;
+      font-weight: bold;
+    }
+    </style>
+  </head>
+
+  <body>
+  <h1>Sairam's - Portfolio</h1>
+   <ol>
+      <h2><li>Diary Project - Day 72 </li></h2>
+      <p class=blurb>This is a 72day challenge project in 100 days of python course. Project is about diary where user can add entries, view them and its also password protected. Only if you have credentials - you can access the diary</p>
+    <a href="https://replit.com/@sairam2294/Day72100Days#main.py"> <img src="static/images/one.png" alt="Diary Project" width="400" height="200"></a>
+     <h2><li>GooeyGUI- Day 66</li></h2>
+        <p class=blurb>This is a 66day challenge project in 100 days of python course. Project is about GUI based calculator where user can add, subtract, multiply and divide numbers.</p>
+        <a href="https://replit.com/@sairam2294/Day66100Days#main.py"><img src="static/images/GooeyGUI-66.png" alt="GooeyGUI" width="400" height="200"></a>
+
+     <h2> <li>Hangman - Day 39</li></h2>
+     <p class=blurb>This is a 39day challenge project in 100 days of python course. Project is about Hangman game where user can guess the word and if he guesses wrong, he will loose a life.</p>
+     <a href="https://github.com/SairamNallamothu/100-days-of-code/blob/main/39day%20-%20hangman"><img src="static/images/hangman - 39day.png" alt="Hangman" width="400" height="200"></a>
+
+     <h2> <li>Generic RPG - Day 65</li></h2>
+     <p class=blurb>This is a 65day challenge project in 100 days of python course. Project is about Generic RPG game where user can choose his character and fight with the enemy.</p>
+    <a href="https://replit.com/@sairam2294/Day65100Days#main.py"> <img src="static/images/two-65.png" alt="Generic RPG" width="400" height="200"></a>
+
+     <h2> <li>Starwars - Day 37</li></h2>
+     <p class=blurb>This is a 37day challenge project in 100 days of python course. Project is about Starwars game where user can choose his character and fight with the enemy.</p>
+     <a href="https://github.com/SairamNallamothu/100-days-of-code/blob/main/37day-%20Star%20Wars%20name"><img src="static/images/starwars - 37day.png" alt="Starwars" width="400" height="200"></a>
+   </ol>
+
+  </body>
+  </html>"""
+  return page
+
+@app.route('/linktree') 
+def linktree(): 
+  page = """
+  <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <img src="static/images/sairam.jpg" alt="Sairam photo" width="100px" height="100px">
+  <h1> Sairam Nallamothu</h1>
+  <p>I am working at Daimler Truck as IT Architect</p>
+  <h2> Socials</h2>
+  <ul>
+    <li><a href="https://www.linkedin.com/in/sairamnallamothu/">LinkedIn</a>
+    </li>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
+  """
+
+  return page
+  #return "Hello, World!"
+
+app.run(host='0.0.0.0', port=81)
