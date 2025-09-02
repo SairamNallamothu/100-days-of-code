@@ -1,0 +1,45 @@
+import datetime
+from flask import Flask, redirect
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  myName = "Sairam"
+  page = """
+  <html>
+    <head>
+      <title>Home Page - Sairam</title>
+    </head>
+    <body>
+      <h2>Hello, """ + myName
+  page += """</h2>
+  <p> <a href="/first">First Blog</a></p>
+  <p><a href="/second">Second Blog</a></p>
+  </html>"""
+  return page
+
+@app.route('/first')
+def firstblog():
+  page = ""
+  date = datetime.datetime.now().strftime("%d-%m-%y")
+  f = open("template/firstblog.html", "r")
+  page = f.read()
+  f.close()
+  page = page.replace("{date}", date)
+  return page
+
+@app.route('/second')
+def secondBlog():
+  page = ""
+  date = datetime.datetime.now().strftime("%d-%m-%y")
+  f = open("template/secondblog.html", "r")
+  page = f.read()
+  f.close()
+  page = page.replace("{date}", date)
+  return page
+
+app.run(host='0.0.0.0', port=81)
+
+ 
+  
