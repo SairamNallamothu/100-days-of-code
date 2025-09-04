@@ -4,7 +4,29 @@ app = Flask(__name__)
 
 @app.route('/<pageNumber>')
 
-def index(pageNumber):
-  return f"This is page {pageNumber}"
+def page(pageNumber):
+  f = open('templates/day.html', 'r')
+  html = f.read()
+  f.close()
+  html = html.replace('{number}', pageNumber)
+  return html
+
+@app.route('/')
+def index():
+  return "This is the home page. Enter a page number in the URL."
 
 app.run(host='0.0.0.0', port=81)
+
+
+
+###############################################################################
+<html>
+    <head>
+        <title>Day {number} Reflection</title>
+    </head>
+    <body>
+        <h1>Day {number} Reflection</h1>
+        <a href='https://replit.com/@sairam2294/Day{number}100Days?v=1'>See my code here</a>
+        <p>Was a bit of head scracher, but I got there at the end. Even if was bit lazy with css :) </p>
+    </body>
+</html>
