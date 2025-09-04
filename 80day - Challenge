@@ -1,0 +1,53 @@
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route("/login", methods=["POST"])
+def process():
+  page = ""
+  form = request.form
+
+  if (form["username"] == "sairam" and form["password"] == "sairam") or (form["username"] == "bhaavya" and form["password"] == "bhaavya") or (form["username"] == "pradeep" and form["password"] == "pradeep"):
+      
+    page += "You are logged in"
+  else:
+    page += "Login Failed. Username, password or email is incorrect."
+
+  return page
+  
+@app.route('/')
+def index():
+  f = open("template/index.html", "r")
+  page = f.read()
+  f.close()
+  return page
+  
+app.run(host='0.0.0.0', port=81)
+
+###########################################
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<form method = "post" action = "/login">
+
+    <p>Username: <input type="text" name="username" required> </p>
+    <p>Email: <input type="Email" name="email"> </p>
+    <p>Password: <input type="password" name="password"> </p>
+
+
+    <button type="submit">Login</button>
+
+  </form>
+</body>
+
+</html>
