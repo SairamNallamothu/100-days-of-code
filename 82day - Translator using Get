@@ -1,0 +1,40 @@
+from flask import Flask, request
+import requests
+
+app = Flask(__name__)
+
+def translate_text(text, target_lang):
+  url = "https://translate.googleapis.com/translate_a/single"
+  params = {
+      "client": "gtx",
+      "sl": "auto",        # auto-detect source language
+      "tl": target_lang,   # target language
+      "dt": "t",
+      "q": text
+  }
+  response = requests.get(url, params=params)
+  translated_text = ''.join([item[0] for item in response.json()[0]])
+  return translated_text
+
+
+@app.route('/<language>', methods=["GET"])
+def index(language):
+  text = "Hello this is a translator"
+
+  lang_map = {
+    "english": "en",
+    "spanish": "es",
+    "french": "fr",
+    "german": "de",
+    "italian": "it"
+  }
+
+  lang_code = lang_map.get(language.lower())
+  if lang_code:
+    translated_text = translate_text(text, lang_code)
+    return f"<h1>{translated_text}</h1>"
+    
+  else:
+    return "Language not supported"
+
+app.run(host='0.0.0.0', port=81)
