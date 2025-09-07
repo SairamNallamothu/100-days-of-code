@@ -1,0 +1,75 @@
+from flask import Flask, request
+from replit import db
+from werkzeug.utils import redirect
+from os import system
+from datetime import datetime
+
+app = Flask(__name__)
+
+
+@app.route('/', methods=['GET'])
+def index():
+  f = open("home.html", "r")
+  page = f.read()
+  return page
+
+
+@app.route('/login', methods=['POST'])
+def login():
+  userName = request.form['username']
+  userPassword = request.form['password']
+  userID = db[userName]["name"]
+  if userPassword == db[userName]["password"]:
+    return "Hello " + userID
+  else:
+    return "Incorrect Username or password"
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+  Name = request.form['nameid']
+  userName = request.form['username']
+  userPassword = request.form['password']
+  db["username"] = userName
+  db[userName] = {"password": userPassword, "name": Name}
+
+  return redirect('/static/signupsuccess.html')
+
+
+@app.route("/nope")
+def nope():
+  return """<img src="static/nerdy.gif" height="100">"""
+
+
+@app.route("/yup")
+def yup():
+  return """<img src="static/yup.gif" height="100">"""
+
+
+app.run(host='0.0.0.0', port=8080)
+
+###############################################
+<form method="post" action="/login">
+  <p>Username: <input type="text" name="username" required></p>
+  <p>Password: <input type="password" name="password" required></p>
+  <button type="submit">Log in</button>
+</form>
+###############################################
+<html>
+  <body>
+    <form method="post" action="/signup">
+      <p> Name: <input type = "text" name="nameid" required"></p>
+      <p>Username: <input type="text" name="username" required></p>
+      <p>Password: <input type="password" name="password" required></p>
+      <button type="submit">Sign up</button>
+    </form>
+  </body>
+</html>
+################################################
+<html>
+  <body>
+    <h1>Sign up successful!</h1>
+    <a href="/static/login.html">Login</a>
+  </body>
+</html>
+
