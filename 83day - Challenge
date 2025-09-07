@@ -1,0 +1,132 @@
+import datetime
+from flask import Flask, redirect, request
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+  myName = "Sairam"
+  page = """
+  <html>
+    <head>
+      <title>Home Page - Sairam</title>
+    </head>
+    <body>
+      <h2>Hello, """ + myName
+  page += """</h2>
+  <p> <a href="/first">First Blog</a></p>
+  <p><a href="/second">Second Blog</a></p>
+  </html>"""
+  return page
+
+
+@app.route('/first', methods=["GET"])
+def firstblog():
+  value = request.args.get("theme")
+  if value is None:
+    value = ""  # Default to empty string if no theme parameter provided
+  page = ""
+
+  date = datetime.datetime.now().strftime("%d-%m-%y")
+  f = open("template/firstblog.html", "r")
+  page = f.read()
+  f.close()
+  page = page.replace("{date}", date)
+  if value == "dark":
+    page = page.replace("{theme}", "dark")
+  elif value == "light":
+    page = page.replace("{theme}", "light")
+  else:
+    page = page.replace("{theme}", "default")
+
+  return page
+
+
+@app.route('/second')
+def secondBlog():
+  value = request.args.get("theme")
+  if value is None:
+    value = ""  # Default to empty string if no theme parameter provided
+  page = ""
+  date = datetime.datetime.now().strftime("%d-%m-%y")
+  f = open("template/secondblog.html", "r")
+  page = f.read()
+  f.close()
+  page = page.replace("{date}", date)
+  if value == "dark":
+    page = page.replace("{theme}", "dark")
+  elif value == "light":
+    page = page.replace("{theme}", "light")
+  else:
+    page = page.replace("{theme}", "default")
+
+  return page
+
+
+app.run(host='0.0.0.0', port=8080)
+
+#################################################
+<html>
+    <head>
+        <title>Second Blog</title>
+      <style>
+          .light
+          {
+            background-color: gray;
+            color: #222222;
+            font-family: Arial, sans-serif;
+          }
+          .dark
+          {
+              background-color: black;
+              color: #f5f5f5;
+              font-family: Arial, sans-serif;
+          }
+           .default
+           {
+             background-color: #ffffff;
+             color: #222222;
+             font-family: Arial, sans-serif;
+           }
+      </style>
+    </head>
+  <body>
+      <h1 class={theme}>Second Blog</h1>
+      <p>{date}</p>
+      <p>This is the second blog post.</p>
+      <a href="/">Go back to the home page</a>
+  </body>
+</html>
+##################################################
+<html>
+    <head>
+        <title>First Blog</title>
+        <style>
+            .light
+            {
+              background-color: gray;
+              color: #222222;
+              font-family: Arial, sans-serif;
+            }
+            .default
+            {
+              background-color: #ffffff;
+              color: #222222;
+              font-family: Arial, sans-serif;
+            }
+            .dark
+              {
+                  background-color: black;
+                  color: #f5f5f5;
+                  font-family: Arial, sans-serif;
+              }
+        </style>
+    </head>
+  <body class={theme}>
+      <h1>First Blog</h1>
+      <p>{date}</p>
+      <p>This is the first blog post.</p>
+      <a href="/">Go back to the home page</a>
+  </body>
+</html>
