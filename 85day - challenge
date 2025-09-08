@@ -1,0 +1,69 @@
+from flask import Flask, request, session
+from replit import db
+from werkzeug.utils import redirect
+from os import system
+from datetime import datetime
+import os
+
+app = Flask(__name__)
+app.secret_key = os.environ['sessionKey']
+
+
+@app.route('/', methods=['GET'])
+def index():
+  f = open("home.html", "r")
+  page = f.read()
+  return page
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+  userName = request.form['username']
+  userPassword = request.form['password']
+  userID = db[userName]["name"]
+  if userPassword == db[userName]["password"]:
+    session["username"] = request.form["username"]
+    return redirect("/yup")
+  else:
+    return redirect("/nope")
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+  Name = request.form['nameid']
+  userName = request.form['username']
+  userPassword = request.form['password']
+  db["username"] = userName
+  db[userName] = {"password": userPassword, "name": Name}
+  session["username"] = request.form["username"]
+
+  return redirect('/static/yup')
+
+
+@app.route("/nope")
+def nope():
+  if "username" not in session:
+    return redirect("/login")
+  else:
+    return """<img src="static/nerdy.gif" height="100"><br>"""
+
+
+@app.route("/yup")
+def yup():
+  if "username" not in session:
+    return redirect("/login")
+  else:
+    return """<img src="static/yup.gif" height="100">
+    <br>
+    <form action="/logout" method="get">
+    <button>Logout</button>
+    </form>"""
+
+
+@app.route("/logout", methods=['GET'])
+def logout():
+  session.clear()
+  return redirect("/")
+
+
+app.run(host='0.0.0.0', port=8080)
