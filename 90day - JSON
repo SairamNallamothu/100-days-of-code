@@ -1,0 +1,29 @@
+import requests, json
+
+result = requests.get("https://randomuser.me/api/")
+user = result.json() 
+n = 0
+
+while True: 
+  name = user["results"][0]["name"]["first"] + user["results"][0]["name"]["last"]
+  image = f"""{user["results"][0]["picture"]["medium"]}"""
+  picture = requests.get(image) 
+  f = open(f'{name}'".jpg", "wb")
+  f.write(picture.content) #writes the image to the file  
+  f.close() #closes the file
+  print(name)
+  print(image)
+  print()
+  n += 1
+  result = requests.get("https://randomuser.me/api/")
+  user = result.json()
+  if n == 10:
+    print("10 names printed")
+    print()
+    break
+  else:
+    continue
+  
+
+
+#print(json.dumps(user, indent=2))
