@@ -1,0 +1,85 @@
+import requests, json
+timezone = "CET"
+latitude = 49.000350630759954
+longitude = 8.404629121745268
+
+result = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone={timezone.upper()}")
+
+user = result.json()
+weatherCode = user["daily"]["weathercode"][0]
+code = user["daily"]["weathercode"][0]  # Example: 61
+
+if code == 0:
+    desc = "☀️ Clear sky – no clouds, full sunshine."
+elif code == 1:
+    desc = "🌤️ Mostly clear – a few small clouds, plenty of sunshine."
+elif code == 2:
+    desc = "⛅ Partly cloudy – mix of sun and clouds."
+elif code == 3:
+    desc = "☁️ Overcast – sky covered with clouds, little to no sunshine."
+
+elif code in [45, 48]:
+    desc = "🌫️ Fog – reduced visibility. (48 means fog with frost forming on surfaces.)"
+
+elif code == 51:
+    desc = "🌦️ Light drizzle – fine drops, barely wetting the ground."
+elif code == 53:
+    desc = "🌦️ Moderate drizzle – persistent, damp conditions."
+elif code == 55:
+    desc = "🌧️ Dense drizzle – steady fine rain, making surfaces wet."
+elif code == 56:
+    desc = "🌧️ Light freezing drizzle – drizzle forming slippery ice."
+elif code == 57:
+    desc = "🌧️ Heavy freezing drizzle – dangerous ice buildup on surfaces."
+
+elif code == 61:
+    desc = "🌧️ Slight rain – light, occasional showers."
+elif code == 63:
+    desc = "🌧️ Moderate rain – steady rain, noticeable but not intense."
+elif code == 65:
+    desc = "🌧️ Heavy rain – strong downpour, could cause puddles."
+elif code == 66:
+    desc = "🌨️ Light freezing rain – rain freezing on contact, slippery conditions."
+elif code == 67:
+    desc = "🌨️ Heavy freezing rain – severe icing hazard."
+
+elif code == 71:
+    desc = "❄️ Slight snowfall – light snow, little accumulation."
+elif code == 73:
+    desc = "❄️ Moderate snowfall – steady snow, visibility reduced."
+elif code == 75:
+    desc = "❄️ Heavy snowfall – thick snow, fast accumulation."
+elif code == 77:
+    desc = "❄️ Snow grains – tiny frozen particles, like ice pellets."
+
+elif code == 80:
+    desc = "🌦️ Light rain showers – scattered, short-lived."
+elif code == 81:
+    desc = "🌦️ Moderate rain showers – stronger, more frequent."
+elif code == 82:
+    desc = "🌧️ Heavy rain showers – intense, possibly brief flooding."
+
+elif code == 85:
+    desc = "🌨️ Light snow showers – scattered and short-lived."
+elif code == 86:
+    desc = "🌨️ Heavy snow showers – intense bursts of snowfall."
+
+elif code == 95:
+    desc = "⛈️ Thunderstorm – lightning and thunder, possible heavy rain."
+elif code == 96:
+    desc = "⛈️ Thunderstorm with light hail – storm plus small hailstones."
+elif code == 99:
+    desc = "⛈️ Severe thunderstorm with heavy hail – dangerous weather."
+
+else:
+    desc = "🔍 Unknown weather code – no description available."
+
+print(desc)
+
+    
+
+print()
+print("☀️ : ",user["daily"]["temperature_2m_max"][0], end=" ")
+print("    ❄️ : ",user["daily"]["temperature_2m_min"][0], )
+print()
+#print(json.dumps(user, indent=2))
