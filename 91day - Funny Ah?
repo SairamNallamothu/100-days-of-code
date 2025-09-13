@@ -1,0 +1,36 @@
+import requests, json
+from replit import db
+
+def getJoke():
+  result = requests.get("https://icanhazdadjoke.com/", headers=      {"Accept":"application/json"}) 
+
+  joke = result.json()
+  newJoke = joke["joke"]
+  ID = joke["id"]
+  print("New Joke:",newJoke)
+  return joke, newJoke, ID
+
+while True:
+  print()
+  joke, newJoke, ID = getJoke()
+  print()
+  value = input("(s)ave, (n)ew joke, (l)oad old jokes, (q)uit: ")
+  print()
+  if value == "s":
+   print()
+   db[f'{ID}'] = joke["joke"]
+   print("Joke saved!")
+   print()
+   continue
+  elif value == "n":
+    continue
+  elif value == "l":
+    for key in db.keys():
+      print(db[key])
+      print("\n")
+      continue
+  elif value == "q":
+    break
+  else:
+    print("Invalid input, try again!")
+    continue
