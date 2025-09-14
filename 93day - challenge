@@ -1,0 +1,95 @@
+import os
+import requests
+from requests.auth import HTTPBasicAuth
+from flask import Flask, request, render_template_string
+
+app = Flask(__name__)
+
+# Spotify API credentials from environment variables
+clientID = os.environ['CLIENT_ID']
+clientSecret = os.environ['CLIENT_SECRET']
+
+# Get Spotify access token
+auth = HTTPBasicAuth(clientID, clientSecret)
+response = requests.post(
+    "https://accounts.spotify.com/api/token",
+    data={"grant_type": "client_credentials"},
+    auth=auth
+)
+accessToken = response.json()["access_token"]
+
+# HTML template
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#f5f5f5; display:flex; flex-direction:column; align-items:center; padding:20px; }
+        h1 { color:#2c3e50; }
+        form { margin:20px 0; }
+        input[type="number"] { padding:8px; width:150px; border-radius:5px; border:1px solid #ccc; margin-right:10px; text-align:center; }
+        input[type="submit"] { padding:8px 15px; background-color:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; }
+        input[type="submit"]:hover { background-color:#2980b9; }
+        .track { display:flex; align-items:center; justify-content:space-between; background:#fff; padding:10px; margin-bottom:10px; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.1); width:100%; max-width:600px; }
+        .track-info { display:flex; flex-direction:column; }
+        .track-info span { font-size:0.9rem; color:#34495e; }
+        audio { outline:none; }
+    </style>
+</head>
+<body>
+    <h1>Music Player</h1>
+    <form method="post">
+        <input type="number" name="year" min="1900" max="2100" placeholder="e.g., 2020" required>
+        <input type="submit" value="Go">
+    </form>
+
+    {% if tracks %}
+        <h2>Top Tracks for {{ year }}</h2>
+        {% for track in tracks %}
+            <div class="track">
+                <div class="track-info">
+                    <strong>{{ track['name'] }}</strong>
+                    <span>{{ track['artists'] }}</span>
+                </div>
+                {% if track['preview_url'] %}
+                    <audio controls>
+                        <source src="{{ track['preview_url'] }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                {% else %}
+                    <span>No preview available</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
+"""
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    tracks = []
+    year = None
+    if request.method == 'POST':
+        year = request.form['year']
+        # Correct query to filter tracks by release year
+        search_url = f"https://api.spotify.com/v1/search?q=year:{year}&type=track&limit=50"
+        headers = {"Authorization": f"Bearer {accessToken}"}
+        response = requests.get(search_url, headers=headers).json()
+
+        for item in response.get('tracks', {}).get('items', []):
+            if item['preview_url']:  # Only include playable tracks
+                tracks.append({
+                    'name': item['name'],
+                    'artists': ', '.join([a['name'] for a in item['artists']]),
+                    'preview_url': item['preview_url']
+                })
+            if len(tracks) == 10:  # Stop after 10 playable tracks
+                break
+
+    return render_template_string(HTML_TEMPLATE, tracks=tracks, year=year)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
