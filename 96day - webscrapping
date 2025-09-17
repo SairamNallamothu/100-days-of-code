@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://news.ycombinator.com/"
+headers = {
+    "User-Agent": "MyHNScraper/1.0 (https://example.org/contact; your_email@example.com)"
+}
+
+response = requests.get(url, headers=headers)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Correct class name for HN headlines
+myLinks = soup.find_all("a", class_="titlelink")
+
+print(f"Found {len(myLinks)} headlines")
+
+for link in myLinks:
+    headline = link.get_text(strip=True)
+    href = link.get("href")
+
+    # filter only Python or Replit headlines
+    if "python" in headline.lower() or "replit" in headline.lower():
+        # Some HN links are external, some are internal
+        if href.startswith("item?id="):
+            href = f"https://news.ycombinator.com/{href}"
+        print(f"{headline}\n{href}\n")
