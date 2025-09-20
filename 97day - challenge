@@ -1,0 +1,41 @@
+import requests, json
+from bs4 import BeautifulSoup
+import requests, json, os
+
+from openai import OpenAI
+import os
+
+client = OpenAI(api_key=os.environ["openai"])
+
+# List models
+models = client.models.list()
+for model in models.data:
+    print(model.id)
+
+url = "https://news.ycombinator.com/"
+
+response = requests.get(url)
+html = response.text
+soup = BeautifulSoup(html, 'html.parser')
+
+#refs = soup.find_all('a')
+
+#for ref in refs:
+  #print(ref.text)
+titles = soup.select(".titleline a")
+
+articles = [{"title": t.text, "url": t["href"]} for t in titles]
+
+titles_text = "\n".join([a["title"] for a in articles])
+
+prompt = f"Here are some Hacker News headlines:\n\n{titles_text}\n\nSummarize the main themes and trends in 5 concise bullet points."
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",  # or gpt-4.1, gpt-3.5-turbo, etc.
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant that summarizes tech news."},
+        {"role": "user", "content": prompt}
+    ]
+)
+
+print(response.choices[0].message.content)
